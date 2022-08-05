@@ -6,7 +6,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_circle_left_24.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.30434782608695654" />
-        <entry key="app/src/main/res/layout/fragment_all_stocks.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_all_stocks.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_top_gainers.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_top_losers.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/stocks_rv_list.xml" value="0.35520833333333335" />
