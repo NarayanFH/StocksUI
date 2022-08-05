@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:minHeight="?attr/actionBarSize"
+    android:layout_height="?actionBarSize"
+    android:title="@string/all_stocks"
+    android:titleTextColor="@color/black"
+    android:titleMarginStart="100dp"
+    android:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
+    android:theme="?attr/actionBarTheme"
+    local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
