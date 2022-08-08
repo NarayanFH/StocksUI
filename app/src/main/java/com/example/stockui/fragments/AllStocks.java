@@ -66,13 +66,13 @@ public class AllStocks extends Fragment {
                 if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
                     page++;
                     getDataFromAPI(page);
-                    System.out.println(savedPage);
-                    System.out.println("Page Number" + page);
-                } else if (scrollY == 0 & page > 1) {
-                    page--;
-                    getDataFromAPI(page);
-                    System.out.println("Page Number" + page);
+                    System.out.println("Page Number: " + page);
                 }
+//                else if (scrollY == 0 & page > 1) {
+//                    page--;
+//                    getDataFromAPI(page);
+//                    System.out.println("Page Number" + page);
+//                }
             }
         });
 
@@ -102,13 +102,13 @@ public class AllStocks extends Fragment {
                             Gson gson = new Gson();
                             Type typeToken = new TypeToken<List<StocksModel>>() {
                             }.getType();
-                            stocksModelList = gson.fromJson(value, typeToken);
-                            for (int i = 1; i < dataArray.length(); i++) {
-                                stocksModelList.add(new StocksModel(stocksModelList.get(i).getStockName(), stocksModelList.get(i).getCurrentPrice(), stocksModelList.get(i).getDayChangeP(), stocksModelList.get(i).getYearChangeP(),stocksModelList.get(i).getSectorName()));
+                            stocksModelList.addAll(gson.fromJson(value, typeToken));
+//                            for (int i = 1; i < dataArray.length(); i++) {
+//                                stocksModelList.add(new StocksModel(stocksModelList.get(i).getStockName(), stocksModelList.get(i).getCurrentPrice(), stocksModelList.get(i).getDayChangeP(), stocksModelList.get(i).getYearChangeP(),stocksModelList.get(i).getSectorName()));
                                 stocksRVAdapter = new StocksRVAdapter(stocksModelList, getActivity());
                                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                 recyclerView.setAdapter(stocksRVAdapter);
-                            }
+//                            }
                             System.out.println(savedPage);
                             progressDialog.dismiss();
                         } catch (IOException | JSONException e) {
