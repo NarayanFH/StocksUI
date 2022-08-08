@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
                     getDataFromAPI(page);
                     System.out.println("Page Number" + page);
 //                    mBinding.idPBLoading.setVisibility(View.INVISIBLE);
-                } 
+                } else if (scrollY == 0) {
+                    page --;
+                    getDataFromAPI(page);
+                }
             }
         });
     }
