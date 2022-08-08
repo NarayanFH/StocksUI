@@ -1,9 +1,9 @@
 package com.example.stockui.adapters;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,10 +34,11 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StocksModel stocksModel = stocksModelArrayList.get(position);
-        holder.stockName.setText(stocksModel.data.get(position).stockName);
-        holder.oneDayHigh.setText(stocksModel.data.get(position).dayChangeP);
-        holder.oneYearHigh.setText(stocksModel.data.get(position).yearChangeP);
-        holder.currentPrice.setText(stocksModel.data.get(position).currentPrice);
+        holder.stockName.setText(stocksModel.getStockName());
+        holder.oneDayHigh.setText(stocksModel.getDayChangeP()+" %");
+        holder.oneYearHigh.setText(stocksModel.getYearChangeP()+" %");
+        holder.currentPrice.setText(stocksModel.getCurrentPrice());
+        holder.circleStockNameInitial.setText(stocksModel.getStockName().substring(0,1));
     }
 
     @Override
@@ -46,10 +47,11 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView stockName, oneDayHigh, oneYearHigh,currentPrice;
+        private TextView stockName, oneDayHigh, oneYearHigh, currentPrice, circleStockNameInitial;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            circleStockNameInitial = itemView.findViewById(R.id.tvCircleStocksName);
             stockName = itemView.findViewById(R.id.tvStocksName);
             oneDayHigh = itemView.findViewById(R.id.tv1DayValue);
             oneYearHigh = itemView.findViewById(R.id.tv1YearValue);

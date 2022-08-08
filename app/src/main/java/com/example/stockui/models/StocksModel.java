@@ -3,9 +3,16 @@ package com.example.stockui.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class StocksModel {
+    public StocksModel() {
+    }
+
+    public StocksModel(String stockName, String currentPrice, String dayChangeP, String yearChangeP) {
+        this.stockName = stockName;
+        this.currentPrice = currentPrice;
+        this.dayChangeP = dayChangeP;
+        this.yearChangeP = yearChangeP;
+    }
 
     int page;
 
@@ -17,55 +24,53 @@ public class StocksModel {
         this.page = page;
     }
 
-    @SerializedName("data")
-    public List<Data> data;
+    @SerializedName("stockName")
+    @Expose
+    private String stockName;
 
-    public class Data {
+    @SerializedName("currentPrice")
+    @Expose
+    private String currentPrice;
 
-        @SerializedName("stockName")
-        public int stockName;
+    @SerializedName("dayChangeP")
+    @Expose
+    private String dayChangeP;
 
-        @SerializedName("currentPrice")
-        public int currentPrice;
+    @SerializedName("yearChangeP")
+    @Expose
+    private String yearChangeP;
 
-        @SerializedName("dayChangeP")
-        @Expose
-        public int dayChangeP;
 
-        @SerializedName("yearChangeP")
-        @Expose
-        public int yearChangeP;
-
-        public int getCurrentPrice() {
-            return currentPrice;
-        }
-
-        public void setCurrentPrice(int currentPrice) {
-            this.currentPrice = currentPrice;
-        }
-
-        public int getDayChangeP() {
-            return dayChangeP;
-        }
-
-        public void setDayChangeP(int dayChangeP) {
-            this.dayChangeP = dayChangeP;
-        }
-
-        public int getYearChangeP() {
-            return yearChangeP;
-        }
-
-        public void setYearChangeP(int yearChangeP) {
-            this.yearChangeP = yearChangeP;
-        }
-
-        public int getStockName() {
-            return stockName;
-        }
-
-        public void setStockName(int stockName) {
-            this.stockName = stockName;
-        }
+    public String getCurrentPrice() {
+        return currentPrice;
     }
+
+    public void setCurrentPrice(String currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public String getDayChangeP() {
+        return dayChangeP;
+    }
+
+    public void setDayChangeP(String dayChangeP) {
+        this.dayChangeP = dayChangeP;
+    }
+
+    public String getYearChangeP() {
+        return yearChangeP;
+    }
+
+    public void setYearChangeP(String yearChangeP) {
+        this.yearChangeP = yearChangeP;
+    }
+
+    public String getStockName() {
+        return stockName;
+    }
+
+    public void setStockName(String stockName) {
+        this.stockName = stockName;
+    }
+
 }
