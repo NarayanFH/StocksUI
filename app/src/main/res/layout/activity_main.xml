@@ -1,54 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idNestedSV"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-<!--    <include-->
-<!--        android:id="@+id/toolBarMainActivity"-->
-<!--        layout="@layout/toolbar" />-->
+    <include
+        android:id="@+id/toolBarMainActivity"
+        layout="@layout/toolbar" />
 
-    <androidx.core.widget.NestedScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/idNestedSV"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolBarMainActivity"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@android:color/darker_gray" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <androidx.viewpager.widget.ViewPager
+        android:background="@color/light_grey"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tablayout" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/idRVUsers"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:nestedScrollingEnabled="true"
-                tools:listitem="@layout/stocks_rv_list" />
-
-            <ProgressBar
-                android:id="@+id/idPBLoading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-<!--XML for tablayout remaining for integration-->
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/tablayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:tabSelectedTextColor="@color/black"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/toolBarMainActivity"-->
-<!--        app:tabTextColor="@android:color/darker_gray" />-->
+    <!--XML for tablayout remaining for integration-->
 
 
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/viewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tablayout" />-->
+    <!--    <androidx.core.widget.NestedScrollView-->
+    <!--        xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--        xmlns:tools="http://schemas.android.com/tools"-->
+    <!--        android:id="@+id/idNestedSV"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        tools:context=".MainActivity">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:orientation="vertical">-->
+
+    <!--            <androidx.recyclerview.widget.RecyclerView-->
+    <!--                android:id="@+id/idRVUsers"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="0dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:nestedScrollingEnabled="true"-->
+    <!--                tools:listitem="@layout/stocks_rv_list" />-->
+
+    <!--            <ProgressBar-->
+    <!--                android:id="@+id/idPBLoading"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content" />-->
+    <!--        </LinearLayout>-->
+
+    <!--    </androidx.core.widget.NestedScrollView>-->
+
 
 

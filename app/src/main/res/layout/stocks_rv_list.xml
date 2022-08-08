@@ -8,13 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="15dp">
+            android:paddingTop="3dp">
 
             <TextView
                 android:id="@+id/tvCircleStocksName"
@@ -46,15 +47,15 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/tvCurrentPriceValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               android:paddingEnd="10dp"
+                android:paddingEnd="10dp"
                 android:text="21.6065"
                 android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@id/tvCurrentPriceStatic"
-                app:layout_constraintEnd_toEndOf="@id/tvCurrentPriceStatic" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/tvCurrentPriceStatic"
+                app:layout_constraintTop_toBottomOf="@id/tvCurrentPriceStatic" />
 
             <TextView
                 android:id="@+id/tvContentBelowStocksName"
@@ -81,7 +82,10 @@
                 android:id="@+id/tv1DayStatic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+               android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="2dp"
                 android:text="1 D"
                 android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="@id/viewBelowContent"
@@ -89,21 +93,24 @@
 
             <TextView
                 android:id="@+id/tv1DayValue"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+              android:padding="10dp"
                 android:text="9.9 %"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/viewBelowContent"
                 app:layout_constraintTop_toBottomOf="@id/tv1DayStatic" />
 
             <TextView
                 android:id="@+id/tv1YearStatic"
-                android:layout_marginStart="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_marginStart="30dp"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="2dp"
                 android:text="1 Y"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@id/tv1DayStatic"
@@ -111,14 +118,52 @@
 
             <TextView
                 android:id="@+id/tv1YearValue"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="9.9 %"
                 android:textSize="10sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv1YearStatic"
                 app:layout_constraintTop_toBottomOf="@id/tv1DayStatic" />
+
+            <TextView
+                android:id="@+id/tvMarketCapStatic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="2dp"
+                android:text="Market Cap"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/tv1YearStatic"
+                app:layout_constraintTop_toBottomOf="@id/viewBelowContent" />
+
+            <TextView
+                android:id="@+id/tvMarketCapValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text=" - "
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tvMarketCapStatic"
+                app:layout_constraintTop_toBottomOf="@id/tvMarketCapStatic" />
+
+            <Button
+                android:id="@+id/btnExplore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="@color/blu"
+                android:text="Explore"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tvCurrentPriceStatic"
+                app:layout_constraintTop_toBottomOf="@id/viewBelowContent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
