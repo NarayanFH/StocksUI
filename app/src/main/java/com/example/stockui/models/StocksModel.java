@@ -7,11 +7,12 @@ public class StocksModel {
     public StocksModel() {
     }
 
-    public StocksModel(String stockName, String currentPrice, String dayChangeP, String yearChangeP) {
+    public StocksModel(String stockName, String currentPrice, String dayChangeP, String yearChangeP, String sectorName) {
         this.stockName = stockName;
         this.currentPrice = currentPrice;
         this.dayChangeP = dayChangeP;
         this.yearChangeP = yearChangeP;
+        this.sectorName = sectorName;
     }
 
     int page;
@@ -27,6 +28,18 @@ public class StocksModel {
     @SerializedName("stockName")
     @Expose
     private String stockName;
+
+    @SerializedName("sectorName")
+    @Expose
+    private String sectorName;
+
+    public String getSectorName() {
+        return sectorName;
+    }
+
+    public void setSectorName(String sectorName) {
+        this.sectorName = sectorName;
+    }
 
     @SerializedName("currentPrice")
     @Expose

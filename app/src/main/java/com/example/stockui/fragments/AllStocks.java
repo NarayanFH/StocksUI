@@ -1,5 +1,6 @@
 package com.example.stockui.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ public class AllStocks extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_stocks, container, false);
         nestedScrollView = view.findViewById(R.id.idNestedSV);
-        progressBar = view.findViewById(R.id.idPBLoading);
+//        progressBar = view.findViewById(R.id.idPBLoading);
         recyclerView = view.findViewById(R.id.idRVUsers);
 
 
@@ -79,13 +80,18 @@ public class AllStocks extends Fragment {
     }
 
     private void getDataFromAPI(int page) {
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Please Wait...");
+//        progressDialog.setProgressDrawable(drawable/fintoo_loader_gif);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         StocksModel stocksModel = new StocksModel();
         stocksModel.setPage(page);
         NetworkClass.apiClient().create(RetrofitAPI.class).getPageStocks(stocksModel)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        progressBar.setVisibility(View.VISIBLE);
+//                        progressBar.setVisibility(View.VISIBLE);
                         System.out.println("Response body:" + response.body());
                         Log.e("Stock Rwspnseo:--", response.body().toString());
                         try {
@@ -97,13 +103,14 @@ public class AllStocks extends Fragment {
                             Type typeToken = new TypeToken<List<StocksModel>>() {
                             }.getType();
                             stocksModelList = gson.fromJson(value, typeToken);
-                            for (int i = 0; i < dataArray.length(); i++) {
-                                stocksModelList.add(new StocksModel(stocksModelList.get(i).getStockName(), stocksModelList.get(i).getCurrentPrice(), stocksModelList.get(i).getDayChangeP(), stocksModelList.get(i).getYearChangeP()));
+                            for (int i = 1; i < dataArray.length(); i++) {
+                                stocksModelList.add(new StocksModel(stocksModelList.get(i).getStockName(), stocksModelList.get(i).getCurrentPrice(), stocksModelList.get(i).getDayChangeP(), stocksModelList.get(i).getYearChangeP(),stocksModelList.get(i).getSectorName()));
                                 stocksRVAdapter = new StocksRVAdapter(stocksModelList, getActivity());
                                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                 recyclerView.setAdapter(stocksRVAdapter);
                             }
                             System.out.println(savedPage);
+                            progressDialog.dismiss();
                         } catch (IOException | JSONException e) {
                             e.printStackTrace();
                         }
@@ -111,6 +118,7 @@ public class AllStocks extends Fragment {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        progressDialog.dismiss();
                         System.out.println("Error From APi  ......" + t.getMessage());
                     }
                 });

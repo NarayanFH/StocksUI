@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_margin="18dp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,12 +28,11 @@
 
             <TextView
                 android:id="@+id/tvStocksName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Adani Power Ltd"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/tvCircleStocksName"
+                android:textStyle="bold" app:layout_constraintStart_toEndOf="@id/tvCircleStocksName"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -58,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvCurrentPriceStatic" />
 
             <TextView
-                android:id="@+id/tvContentBelowStocksName"
+                android:id="@+id/tvSectorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
@@ -76,7 +75,7 @@
                 android:background="@color/dg_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvStocksName"
-                app:layout_constraintTop_toBottomOf="@id/tvContentBelowStocksName" />
+                app:layout_constraintTop_toBottomOf="@id/tvSectorName" />
 
             <TextView
                 android:id="@+id/tv1DayStatic"

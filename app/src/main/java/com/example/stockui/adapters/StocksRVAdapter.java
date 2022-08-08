@@ -38,6 +38,7 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
         holder.oneDayHigh.setText(stocksModel.getDayChangeP()+" %");
         holder.oneYearHigh.setText(stocksModel.getYearChangeP()+" %");
         holder.currentPrice.setText(stocksModel.getCurrentPrice());
+        holder.sectorName.setText(stocksModel.getSectorName());
         holder.circleStockNameInitial.setText(stocksModel.getStockName().substring(0,1));
     }
 
@@ -47,7 +48,7 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView stockName, oneDayHigh, oneYearHigh, currentPrice, circleStockNameInitial;
+        private TextView stockName, oneDayHigh, oneYearHigh, currentPrice, circleStockNameInitial,sectorName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +57,7 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
             oneDayHigh = itemView.findViewById(R.id.tv1DayValue);
             oneYearHigh = itemView.findViewById(R.id.tv1YearValue);
             currentPrice = itemView.findViewById(R.id.tvCurrentPriceValue);
+            sectorName = itemView.findViewById(R.id.tvSectorName);
         }
     }
 }
