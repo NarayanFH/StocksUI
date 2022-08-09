@@ -34,6 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mBinding;
     ViewPagerAdapter viewPagerAdapter;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         viewPagerAdapter = new ViewPagerAdapter(
                 getSupportFragmentManager());
-//        viewPagerAdapter.notifyDataSetChanged();
         mBinding.viewPager.setAdapter(viewPagerAdapter);
         mBinding.tablayout.setupWithViewPager(mBinding.viewPager);
     }

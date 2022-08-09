@@ -17,10 +17,12 @@ import java.util.ArrayList;
 
 public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHolder> {
 
-    StocksRvListBinding mBinding;
     private ArrayList<StocksModel> stocksModelArrayList;
     private Context context;
     int pagePos=0;
+    StocksRvListBinding mBinding ;
+    //Name of the test_list_item.xml in camel case + "Binding"
+
 
     public StocksRVAdapter(ArrayList<StocksModel> stocksModelArrayList, Context context) {
         this.stocksModelArrayList = stocksModelArrayList;

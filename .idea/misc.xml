@@ -9,10 +9,14 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_all_stocks.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_fifty2_week.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_fifty2_week_low.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_top_gainers.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_top_losers.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/search_menu.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/stocks_rv_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.35625" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.18" />
+        <entry key="app/src/main/res/menu/search_menu.xml" value="0.35520833333333335" />
       </map>
     </option>
   </component>
