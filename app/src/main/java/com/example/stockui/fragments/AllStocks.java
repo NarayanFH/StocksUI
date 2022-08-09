@@ -112,6 +112,9 @@ public class AllStocks extends Fragment {
                             stocksModelList.addAll(gson.fromJson(value, typeToken));
                             mBinding.rvStocksMain.setLayoutManager(new LinearLayoutManager(getActivity()));
                             mBinding.rvStocksMain.setAdapter(stocksRVAdapter);
+                            String scrollToLastPosition = Integer.toString(page-1) + 0;
+//                            System.out.println("Appended"+scrollToLastPosition);
+                            mBinding.rvStocksMain.scrollToPosition(Integer.parseInt(scrollToLastPosition));
                             stocksRVAdapter.updateDataSet(stocksModelList);
                             System.out.println(savedPage);
                             progressDialog.dismiss();

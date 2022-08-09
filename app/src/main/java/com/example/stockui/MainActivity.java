@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         viewPagerAdapter = new ViewPagerAdapter(
                 getSupportFragmentManager());
-        viewPagerAdapter.notifyDataSetChanged();
+//        viewPagerAdapter.notifyDataSetChanged();
         mBinding.viewPager.setAdapter(viewPagerAdapter);
         mBinding.tablayout.setupWithViewPager(mBinding.viewPager);
     }
