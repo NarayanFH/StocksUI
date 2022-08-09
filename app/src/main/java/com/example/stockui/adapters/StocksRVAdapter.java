@@ -10,14 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stockui.R;
+import com.example.stockui.databinding.StocksRvListBinding;
 import com.example.stockui.models.StocksModel;
 
 import java.util.ArrayList;
 
 public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHolder> {
 
+    StocksRvListBinding mBinding;
     private ArrayList<StocksModel> stocksModelArrayList;
     private Context context;
+    int pagePos=0;
 
     public StocksRVAdapter(ArrayList<StocksModel> stocksModelArrayList, Context context) {
         this.stocksModelArrayList = stocksModelArrayList;
@@ -33,6 +36,7 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        pagePos = holder.getAdapterPosition();
         StocksModel stocksModel = stocksModelArrayList.get(position);
         holder.stockName.setText(stocksModel.getStockName());
         holder.oneDayHigh.setText(stocksModel.getDayChangeP()+" %");
@@ -40,6 +44,13 @@ public class StocksRVAdapter extends RecyclerView.Adapter<StocksRVAdapter.ViewHo
         holder.currentPrice.setText(stocksModel.getCurrentPrice());
         holder.sectorName.setText(stocksModel.getSectorName());
         holder.circleStockNameInitial.setText(stocksModel.getStockName().substring(0,1));
+    }
+
+    public void updateDataSet(ArrayList<StocksModel> stocksModelList){
+        if(stocksModelList!=null){
+            stocksModelArrayList = stocksModelList;
+        }
+        notifyDataSetChanged();
     }
 
     @Override

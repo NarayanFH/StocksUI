@@ -1,13 +1,17 @@
 package com.example.stockui.fragments;
 
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,44 +41,47 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AllStocks extends Fragment {
-    NestedScrollView nestedScrollView;
-    ProgressBar progressBar;
-    RecyclerView recyclerView;
-//    FragmentAllStocksBinding mBinding;
+    FragmentAllStocksBinding mBinding;
     private ArrayList<StocksModel> stocksModelList;
     StocksRVAdapter stocksRVAdapter;
     int page = 1;
     int savedPage = 1;
-
+    Parcelable state;
     public AllStocks() {
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_all_stocks, container, false);
-        nestedScrollView = view.findViewById(R.id.idNestedSV);
-//        progressBar = view.findViewById(R.id.idPBLoading);
-        recyclerView = view.findViewById(R.id.idRVUsers);
+        inflater.inflate(R.layout.fragment_all_stocks, container, false);
 
-
+        mBinding = FragmentAllStocksBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
         getDataFromAPI(page);
         stocksModelList = new ArrayList<>();
-        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+        mBinding.rvStocksMain.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
                     page++;
                     getDataFromAPI(page);
                     System.out.println("Page Number: " + page);
                 }
-//                else if (scrollY == 0 & page > 1) {
-//                    page--;
-//                    getDataFromAPI(page);
-//                    System.out.println("Page Number" + page);
-//                }
             }
         });
+
+//        mBinding.rvStocksMain.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+//                    @Override
+//                    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                        if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+//                            page++;
+//                            getDataFromAPI(page);
+//                            System.out.println("Page Number: " + page);
+//                        }
+//                    }
+//                });
 
         return view;
     }
@@ -91,7 +98,6 @@ public class AllStocks extends Fragment {
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        progressBar.setVisibility(View.VISIBLE);
                         System.out.println("Response body:" + response.body());
                         Log.e("Stock Rwspnseo:--", response.body().toString());
                         try {
@@ -102,13 +108,11 @@ public class AllStocks extends Fragment {
                             Gson gson = new Gson();
                             Type typeToken = new TypeToken<List<StocksModel>>() {
                             }.getType();
+                            stocksRVAdapter = new StocksRVAdapter(stocksModelList, getActivity());
                             stocksModelList.addAll(gson.fromJson(value, typeToken));
-//                            for (int i = 1; i < dataArray.length(); i++) {
-//                                stocksModelList.add(new StocksModel(stocksModelList.get(i).getStockName(), stocksModelList.get(i).getCurrentPrice(), stocksModelList.get(i).getDayChangeP(), stocksModelList.get(i).getYearChangeP(),stocksModelList.get(i).getSectorName()));
-                                stocksRVAdapter = new StocksRVAdapter(stocksModelList, getActivity());
-                                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                recyclerView.setAdapter(stocksRVAdapter);
-//                            }
+                            mBinding.rvStocksMain.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            mBinding.rvStocksMain.setAdapter(stocksRVAdapter);
+                            stocksRVAdapter.updateDataSet(stocksModelList);
                             System.out.println(savedPage);
                             progressDialog.dismiss();
                         } catch (IOException | JSONException e) {

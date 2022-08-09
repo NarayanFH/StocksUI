@@ -74,4 +74,7 @@ public class RawData {
 //        });
 //
 //    }
+
+//                                for (int i = 1; i < dataArray.length(); i++) {
+//                                stocksModelList.add(new StocksModel(stocksModelList.get(i).getStockName(), stocksModelList.get(i).getCurrentPrice(), stocksModelList.get(i).getDayChangeP(), stocksModelList.get(i).getYearChangeP(),stocksModelList.get(i).getSectorName()));
 }

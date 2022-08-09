@@ -35,8 +35,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    TabLayout tabLayout;
-    ViewPager viewPager;
+    ActivityMainBinding mBinding;
     ViewPagerAdapter viewPagerAdapter;
 
     @Override
@@ -44,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        viewPager = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.tablayout);
+        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
         viewPagerAdapter = new ViewPagerAdapter(
                 getSupportFragmentManager());
-        viewPager.setAdapter(viewPagerAdapter);
-        // It is used to join TabLayout with ViewPager.
-        tabLayout.setupWithViewPager(viewPager);
+        viewPagerAdapter.notifyDataSetChanged();
+        mBinding.viewPager.setAdapter(viewPagerAdapter);
+        mBinding.tablayout.setupWithViewPager(mBinding.viewPager);
     }
 }
 
