@@ -3,16 +3,14 @@ package com.example.stockui.fragments;
 import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.widget.NestedScrollView;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +44,8 @@ public class AllStocks extends Fragment {
     StocksRVAdapter stocksRVAdapter;
     int page = 1;
     int savedPage = 1;
-    Parcelable state;
+    private View view;
+
     public AllStocks() {
     }
 
@@ -54,34 +53,21 @@ public class AllStocks extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        inflater.inflate(R.layout.fragment_all_stocks, container, false);
-
-        mBinding = FragmentAllStocksBinding.inflate(getLayoutInflater());
-        View view = mBinding.getRoot();
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_stocks, container, false);
+        view = mBinding.getRoot();
         getDataFromAPI(page);
         stocksModelList = new ArrayList<>();
         mBinding.rvStocksMain.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
+                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     page++;
                     getDataFromAPI(page);
                     System.out.println("Page Number: " + page);
                 }
             }
         });
-
-//        mBinding.rvStocksMain.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-//                    @Override
-//                    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                        if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
-//                            page++;
-//                            getDataFromAPI(page);
-//                            System.out.println("Page Number: " + page);
-//                        }
-//                    }
-//                });
 
         return view;
     }
@@ -112,7 +98,7 @@ public class AllStocks extends Fragment {
                             stocksModelList.addAll(gson.fromJson(value, typeToken));
                             mBinding.rvStocksMain.setLayoutManager(new LinearLayoutManager(getActivity()));
                             mBinding.rvStocksMain.setAdapter(stocksRVAdapter);
-                            String scrollToLastPosition = Integer.toString(page-1) + 0;
+                            String scrollToLastPosition = Integer.toString(page - 1) + 0;
 //                            System.out.println("Appended"+scrollToLastPosition);
                             mBinding.rvStocksMain.scrollToPosition(Integer.parseInt(scrollToLastPosition));
                             stocksRVAdapter.updateDataSet(stocksModelList);
